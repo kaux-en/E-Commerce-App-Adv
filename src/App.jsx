@@ -1,8 +1,7 @@
 import React from 'react'
 import { Provider } from 'react-redux';
 import store from './store'
-import { setUserSession } from './features/UserSession';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import CreateUser from './components/CreateUser'
 import UpdateUser from './components/UpdateUser'
 import Login from './components/Login'

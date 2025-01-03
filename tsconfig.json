@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+      "target": "ES6",
+      "module": "commonjs",
+      "esModuleInterop": true,
+      "jsx": "react",
+      "types": ["jest", "node", "@testing-library/jest-dom"]
+    },
+    "include": ["src", "src/**/*.test.tsx", "src/**/*.test.ts"]
+  }
