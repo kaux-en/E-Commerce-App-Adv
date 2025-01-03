@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { useDispatch, Provider } from 'react-redux';
+import React from 'react'
+import { Provider } from 'react-redux';
 import store from './store'
 import { setUserSession } from './features/UserSession';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
@@ -11,28 +11,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import DeleteUser from './components/DeleteUser';
 import NavBar from './components/NavBar';
 import Products from './components/Products';
-import Jewelery from './category/Jewelery';
-import Electronics from './category/Electronics';
-import MensClothing from './category/MensClothing';
-import WomensClothing from './category/WomensClothing';
+import Jewelery from './category/Categories';
+import Electronics from './category/Categories';
+import MensClothing from './category/Categories';
+import WomensClothing from './category/Categories'
 import './App.css'
 import Cart from './components/Cart';
 
 function App() {
-/*  const dispatch = useDispatch();
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    // Check for the user session in localStorage
-    const storedUser = localStorage.getItem('userSession');
-    if (storedUser) {
-      const userSession = JSON.parse(storedUser);
-      dispatch(setUserSession(userSession));  // Dispatch to Redux store
-      navigate('/Home');
-    } else {
-      navigate('/');
-    }
-  }, [dispatch, navigate]);  */
 
   return (
     <>

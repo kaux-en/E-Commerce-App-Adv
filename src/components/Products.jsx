@@ -41,7 +41,6 @@ function Products() {
 
     const filteredProducts = products.filter(product => (
             product.title.toLowerCase().includes(query.toLowerCase())
-            //product.price.toLowerCase().includes(query.toLowerCase())
         ));
     
     const handleAddToCart = (id) => {
@@ -64,10 +63,10 @@ function Products() {
                 <br />
 
                 <DropdownButton id="dropdown-button" title="Categories" className="dropdown">
-                    <Dropdown.Item href="/products/categories/electronics">Electronics</Dropdown.Item>
-                    <Dropdown.Item href="/products/categories/jewelry">Jewelery</Dropdown.Item>
-                    <Dropdown.Item href="/products/categories/mensclothing">Men's Clothing</Dropdown.Item>
-                    <Dropdown.Item href="/products/categories/womensclothing">Women's Clothing</Dropdown.Item>
+                    <Dropdown.Item href="/category/electronics">Electronics</Dropdown.Item>
+                    <Dropdown.Item href="/category/jewelery">Jewelery</Dropdown.Item>
+                    <Dropdown.Item href="/category/mensclothing">Men's Clothing</Dropdown.Item>
+                    <Dropdown.Item href="/category/womensclothing">Women's Clothing</Dropdown.Item>
                 </DropdownButton>
                 <br />
 
