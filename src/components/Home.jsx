@@ -9,7 +9,7 @@ function Homepage() {
     useEffect(() => {
     const fetchPage = async () => {
         try {
-            const response = await fetch('https://fakestoreapi.com/products?limit=5')
+            const response = await fetch('https://fakestoreapi.com/products?limit=10')
             const data = await response.json()
             setProducts(data)
             if (!response.ok) {
@@ -31,31 +31,31 @@ function Homepage() {
 
     return (
         <div>
+        <br />
         <h1>Welcome Back</h1>
-
-        <Row>
-            <Col fluid-md={2} className="d-flex">
+        <br />
+            <Container>
+                <Row sm={1}>    
             
                 {
                     products.map(product => (
-                        <Card key={product.id} style={{ width: '15rem' }} className="flex-fill">
+                        <Col sm={6}>
+                        <Card key={product.id} className="flex-wrap justify-content-center d-flex" >
                             <Card.Img className='cardImg' variant="top" src={product.image} />
                             <Card.Body>
-                            <Card.Title>
-                                {product.title} <br /><br />
-                                {`$${product.price}`}
-                            </Card.Title>
-                            <Card.Text>
-                            {product.description}
-                            </Card.Text>
-                        </Card.Body>
+                                    <Card.Title>{product.title}</Card.Title>
+                                    <Card.Title>{`$${product.price}`}</Card.Title>
+                                    {/*<Card.Text>{product.description}</Card.Text>*/}
+                            </Card.Body>
                       </Card>
+                      </Col>
                     ))
                 }
             
-            </Col>
-        </Row>
-        </div>
+          
+            </Row>
+        </Container>
+    </div>
     )
 };
 

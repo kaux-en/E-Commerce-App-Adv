@@ -74,7 +74,7 @@ function Products() {
                 <ul> 
                 {
                     filteredProducts.map(product => (
-                        <li key={product.id} id="noDecor">
+                        <p key={product.id} id="noDecor">
                         <img src={product.image} alt={product.title} width={100} height={100} />
                         <br />
                         <p>
@@ -85,7 +85,7 @@ function Products() {
                         {product.description}
                         </p>
                         <button onClick={() => handleAddToCart(product.id)}>Add to Cart</button>
-                        </li>   
+                        </p>   
                     )) 
                 } 
                 </ul>

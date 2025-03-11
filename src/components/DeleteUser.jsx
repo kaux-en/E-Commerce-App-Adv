@@ -11,44 +11,35 @@ function DeleteUser() {
     const { id } = useParams();
 
     useEffect(() => {
-        const userToDelete = async () => {
-            try {
-                const response = await fetch(`https://fakestoreapi.com/users/${id}`)
-                const data = await response.json();
+        const loggedUser = JSON.parse(localStorage.getItem('userSession'));
+        
+        if (loggedUser) {
+            setUser(loggedUser);  // Set logged-in user to state
+        } else {
+            navigate('/login');  // If no user is logged in, redirect to login page
+        }
+    }, [navigate]);
 
+
+    const handleDelete = async () => {
+        if (user) {
+            try {
+                const response = await fetch(`https://fakestoreapi.com/users/${user.id}`, {
+                    method: 'DELETE',
+                    headers: { 'Content-Type': 'application/json' },
+                });
                 if (!response.ok) {
-                    throw new Error('Error fetching User Account')
+                    throw new Error('Error deleting user account');
                 }
 
-                setUser(data);
+                // Remove user session and navigate to the login
+                localStorage.removeItem('userSession');
+                navigate('/');  // Redirect to login after deletion
             } catch (error) {
-                console.log('Error:', error)
+                console.log("Error:", error);
             }
-        }; 
-            
-        userToDelete();  
-    }, [id]);
-
-
-    const handleDelete = async (id) => {
-    try {
-        const response = await fetch(`https://fakestoreapi.com/users/${id}`, {
-            method: 'DELETE',
-            headers: { 'Content-Type': 'application/json' },
-        })   
-        if (!response.ok) {
-            console.log("Error deleting post")
-        } 
-        
-            navigate('/');
-        //else {
-          //  setUser(user.filter(user => user.id !== id ))
-            //console.log(`${id}:  was deleted`)
-            //setShowAlert(false)
-        //}   
-    } catch (error) {
-        console.log("Error:", error)
-}}
+        }
+    };
 
 
     const handleClick = () => {
@@ -74,14 +65,15 @@ function DeleteUser() {
             )
             }
             <div>
-            {buttonPressed && (
-            <Alert show={showAlert} variant="secondary">
+            {buttonPressed && showAlert && (
+            <Alert variant="secondary">
                 <Alert.Heading>Are you sure you want to Delete your Account</Alert.Heading>
                 <p>
                 Confirm Delete
                 </p>
             <hr />
-            <button onClick={handleDelete(id)}>Delete Account</button>
+            <button onClick={handleDelete}>Delete Account</button>
+            <button variant="secondary" onClick={() => setShowAlert(false)}>Cancel</button>
             </Alert> ) 
             }
             </div>

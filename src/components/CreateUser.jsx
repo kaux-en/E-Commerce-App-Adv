@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import { Form, Button, Container } from 'react-bootstrap';
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setUserSession } from "../features/UserSession";
 
 
 function CreateUser() {
     const url = 'https://fakestoreapi.com/users'
     const [users, setUsers] = useState([])
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
     const [newUserData, setNewUserData] = useState({
         username: '',
         email: '',
@@ -25,9 +30,15 @@ function CreateUser() {
             } 
     
             const data = await response.json()
-            console.log(data)
+            console.log('Created User:', data)
+
+            const userDetails = { name: newUserData.username, email: newUserData.email, isLoggedIn: true };
+            localStorage.setItem('userSession', JSON.stringify(userDetails));  
+            dispatch(setUserSession(userDetails));
+
             setUsers([data, ...users])
             setNewUserData({ username: '', email: '', password: ''})
+            navigate('/')
        
             } catch (error) {
                 console.log('Error:', error.message)
